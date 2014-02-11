@@ -146,7 +146,6 @@ class Post extends AppModel {
 		$this->save($post);
 	}
 
-	
 /**
  * 
  *  find next post 
@@ -196,10 +195,21 @@ class Post extends AppModel {
  */
 	public function addPost($post) {
 		// validate inputs
-		
-		// download from internet if needed
-		if (!empty($post['Post']['picture_url'])) {
-			$post['Post']['picture_upload_object'] = $post['Post']['picture_url'];
+		if (TYPE_IMG == $post['Post']['type']) {
+			// download from internet if needed
+			if (!empty($post['Post']['picture_url'])) {
+				$post['Post']['picture_upload_object'] = $post['Post']['picture_url'];
+			}
+		} elseif (TYPE_VID == $post['Post']['type']) {
+			// youtube video
+			$videoUrl = ($post['Post']['video_url']);
+			if (false!==strpos(($videoUrl), 'youtube')) {
+				parse_str(parse_url( $videoUrl, PHP_URL_QUERY ), $myArrayOfVars );
+				$youtubeId = $myArrayOfVars['v'];  
+				$this->log($youtubeId);
+				$post['Post']['picture_upload_object'] = 'http://i1.ytimg.com/vi/'.$youtubeId.'/hqdefault.jpg';
+				$post['Post']['video_url']= '//www.youtube.com/embed/'.$youtubeId;
+			}
 		}
 		
 		// save to database

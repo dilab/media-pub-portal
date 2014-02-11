@@ -114,8 +114,11 @@
 						<?php 
 						if (TYPE_IMG == $post['Post']['type']) {
 							echo $this->Html->image($post['Post']['picture_upload'],array('style'=>'width:100%;'));
+						} elseif (TYPE_VID == $post['Post']['type']) {
+							echo '<iframe width="100%" height="400" src="'.$post['Post']['video_url'].'" frameborder="0" allowfullscreen></iframe>';
 						}
 						?>
+						
 					</p>
 
 					<p><?php echo $post['Post']['des'];?> </p>

@@ -171,19 +171,22 @@ class PostsController extends AppController {
 				$this->Session->setFlash(__('The post has been saved.'),'msg/success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
+				$this->log($this->Post->validationErrors);
 				$this->Session->setFlash(__('The post could not be saved. Please, try again.'),'msg/failure');
 			}
 		} else {
 			$options = array('conditions' => array('Post.' . $this->Post->primaryKey => $id));
 			$this->request->data = $this->Post->find('first', $options);
 			
-			$this->Post->Category->recursive = -1;
-			$categoryId = $this->request->data['Post']['category_id'];
-			$category = $this->Post->Category->read(null,$categoryId);
 			
-			$this->set('categoryId',$categoryId);
-			$this->set('category',$category);
 		}
+		
+		$this->Post->Category->recursive = -1;
+		$categoryId = $this->request->data['Post']['category_id'];
+		$category = $this->Post->Category->read(null,$categoryId);
+		
+		$this->set('categoryId',$categoryId);
+		$this->set('category',$category);
 		
 	}
 
