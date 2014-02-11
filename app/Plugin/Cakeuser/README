@@ -1,0 +1,38 @@
+Yet another CakePHP user management plugin.
+
+It only supports CakePHP 2.1 +
+
+Feature list:
+
+1.User registration with email verification
+2.User sign in
+3.Simple profile page
+4.Forgot password function
+5.Bootstrap 2.0 powered simple interface
+6.Admin panel - disable user
+7.Admin panel - delete user
+8.User change password function
+9.Remember me feature
+
+INSTALL
+1.git clone git://github.com/dilab/Cakeuser.git app/Plugin/Cakeuser
+
+2.add "CakePlugin::load(array('Cakeuser'=>array('bootstrap' => true)));" to the end of app/Config/bootstrap.php
+
+3.cake schema create --plugin Cakeuser
+
+4.http://localhost/your-cake-app/cakeuser/users/register
+
+
+REMEMBER ME feature
+To use the "remember me" checkbox which sets a cookie on the login page you will need to put this code or method call in your AppController::beforeFilter() method.
+
+public function restoreLoginFromCookie() { 
+        $this->Cookie->name = 'rememberMe';
+        $cookie = $this->Cookie->read('User'); 
+        if (!empty($cookie) && !$this->Auth->user()) {
+            $data['User']['email'] = $cookie['email'];
+            $data['User']['password'] = $cookie['password'];          
+            $this->Auth->login($data);
+        }
+}
