@@ -45,14 +45,17 @@ class PostsController extends AppController {
 			$categoryId = $this->request->data('category_id');
 			$page       = $this->request->data('page');
 			$postsPerPage = $this->settings['home_page_load_more'];
+			$defaultPerPage = $this->settings['home_page_default'];
 			
 			if (null!=$categoryId) {
 				$conditions ['Post.category_id'] = $categoryId;
 			}
 			
+			$offset = $defaultPerPage + ($page-1)*($postsPerPage);
+			
 			$posts = $this->Post->find('all',array( 'conditions'=>$conditions,
 													'limit'=>$postsPerPage,
-													'offset'=>$page*($postsPerPage),
+													'offset'=>$offset,
 													'order'=>'Post.created DESC','contain'=>false));
 		}
 		

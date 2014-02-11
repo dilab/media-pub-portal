@@ -19,7 +19,7 @@ class AppController extends Controller {
 	
 	public $helpers = array('Facebook.Facebook');
 	
-	public $settings = array('home_page_default'=>3,
+	public $settings = array('home_page_default'=>6,
 							 'home_page_load_more'=>3,
 							 'single_page_related'=>3);
 	
