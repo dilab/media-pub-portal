@@ -4,7 +4,7 @@
 	// set it to 1 for demo mode
 	Configure::write('demo',1);
 
-    Configure::write('debug', 2);
+    Configure::write('debug', 0);
     
 	Configure::write('Error', array(
 		'handler' => 'ErrorHandler::handleError',
