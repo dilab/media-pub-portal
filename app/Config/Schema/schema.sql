@@ -25,7 +25,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Table structure for table `categories`
 --
 
-CREATE TABLE `categories` (
+CREATE TABLE IF NOT EXISTS `categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) NOT NULL,
   `icon` varchar(250) NOT NULL COMMENT 'icon css class',
@@ -42,7 +42,7 @@ CREATE TABLE `categories` (
 -- Table structure for table `pages`
 --
 
-CREATE TABLE `pages` (
+CREATE TABLE IF NOT EXISTS `pages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) NOT NULL,
   `content` text NOT NULL,
@@ -59,7 +59,7 @@ CREATE TABLE `pages` (
 -- Table structure for table `posts`
 --
 
-CREATE TABLE `posts` (
+CREATE TABLE IF NOT EXISTS `posts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(250) NOT NULL,
   `des` text NOT NULL,
@@ -84,7 +84,7 @@ CREATE TABLE `posts` (
 -- Table structure for table `settings`
 --
 
-CREATE TABLE `settings` (
+CREATE TABLE IF NOT EXISTS `settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) NOT NULL,
   `value` text NOT NULL,
@@ -98,7 +98,7 @@ CREATE TABLE `settings` (
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(250) NOT NULL,
   `password` varchar(250) NOT NULL,
