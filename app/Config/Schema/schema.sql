@@ -107,3 +107,5 @@ CREATE TABLE `users` (
   `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+
+INSERT INTO `users` VALUES(1, 'admin', 'b7021e3538dd05d2c8f9a55c42ecac11ef585213', 'admin@gmail.com', 'admin', 1);
