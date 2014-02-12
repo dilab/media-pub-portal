@@ -34,7 +34,7 @@ function loadMore() {
 					loadMoreBtn.parents('.load-more-div').eq(0).fadeOut('fast');
 				} else {
 					loadMoreBtn.parents('.load-more-div').eq(0).before(dt).fadeIn('slow');
-					data.page = data.page+1;
+					data.page = parseInt(data.page,10)+1;
 				}
 				loadMoreBtn.button('reset');
 			});
