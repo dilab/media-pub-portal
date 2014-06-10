@@ -28,7 +28,7 @@ class AppController extends Controller {
 		$this->setLayout();
 		$this->setAdminMenu();
 		$this->setOptions();
-		
+
 		
 	}
 	
