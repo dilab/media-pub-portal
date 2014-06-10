@@ -3,9 +3,13 @@
 </ol>
 
 <p>
-<?php echo $this->Html->link(__('Add'),
-									array('action'=>'add',$categoryId),
-									array('class'=>'btn btn-primary'));?>
+<?php
+if (-1!=$categoryId) {
+    echo $this->Html->link(__('Add'),
+                                        array('action'=>'add',$categoryId),
+                                        array('class'=>'btn btn-primary'));
+}
+?>
 </p>
 
 <ul class="nav nav-tabs nav-justified">
