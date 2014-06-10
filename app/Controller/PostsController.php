@@ -101,20 +101,20 @@ class PostsController extends AppController {
  *
  * @return void
  */
-	public function admin_index($categoryId=null,$status=-1) {
+	public function admin_index($categoryId=-1,$status=-1) {
+
 		$this->Post->recursive = 0;
 
-
-
 		$conditions = null;
-		if (null!=$categoryId) {
+
+		if (-1!=$categoryId) {
 			$conditions ['Post.category_id'] = $categoryId;
             $stats = $this->Post->getStatsByCat($categoryId);
 		} else {
             $stats = $this->Post->getStats();
         }
 		
-		if (null!=$status) {
+		if (-1!=$status) {
 			$conditions ['Post.status'] = $status;
 		}
 		

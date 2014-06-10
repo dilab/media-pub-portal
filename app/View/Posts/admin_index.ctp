@@ -46,5 +46,6 @@
 			</tr>
 			<?php endforeach; ?>
 		</table>
+        <?php echo $this->element('pagination'); ?>
 	</div>
 </div>
