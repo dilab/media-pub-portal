@@ -132,6 +132,23 @@ class Post extends AppModel {
 		)
 	);
 
+    /**
+     *  get stats for Approved & Pending post
+     */
+    public function getStats() {
+        $stats['approved'] = $this->find('count',array('conditions'=>array('Post.status'=> STATUS_APPROVED)));
+        $stats['pending'] = $this->find('count',array('conditions'=>array('Post.status'=> STATUS_PENDING)));
+        $stats['total'] = $stats['approved'] +  $stats['pending'];
+        return $stats;
+    }
+
+    public function getStatsByCat($categoryId) {
+        $stats['approved'] = $this->find('count',array('conditions'=>array('Post.category_id'=>$categoryId, 'Post.status'=> STATUS_APPROVED)));
+        $stats['pending'] = $this->find('count',array('conditions'=>array('Post.category_id'=>$categoryId,'Post.status'=> STATUS_PENDING)));
+        $stats['total'] = $stats['approved'] +  $stats['pending'];
+        return $stats;
+    }
+
 /**
  *  increate views
  * 

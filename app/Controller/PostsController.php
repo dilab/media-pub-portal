@@ -1,6 +1,10 @@
 <?php
 App::uses('AppController', 'Controller');
 
+/**
+ *
+ * @property Post
+ */
 class PostsController extends AppController {
 
 	public $components = array('Paginator');
@@ -99,11 +103,16 @@ class PostsController extends AppController {
  */
 	public function admin_index($categoryId=null,$status=-1) {
 		$this->Post->recursive = 0;
-		
+
+
+
 		$conditions = null;
 		if (null!=$categoryId) {
-			$conditions ['Post.category_id'] = $categoryId; 
-		}
+			$conditions ['Post.category_id'] = $categoryId;
+            $stats = $this->Post->getStatsByCat($categoryId);
+		} else {
+            $stats = $this->Post->getStats();
+        }
 		
 		if (null!=$status) {
 			$conditions ['Post.status'] = $status;
@@ -114,6 +123,7 @@ class PostsController extends AppController {
 		$this->set('posts', $this->Paginator->paginate());
 		$this->set('categoryId',$categoryId);
 		$this->set('status',$status);
+        $this->set('stats',$stats);
 	}
 
 /**

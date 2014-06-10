@@ -29,7 +29,10 @@ CakeLog::config('error', array(
 define('TYPE_IMG','image');
 define('TYPE_VID','video');
 
+define('STATUS_PENDING',0);
+define('STATUS_APPROVED',1);
+
 Configure::write('status', array(
-	0 => 'Pending',
-	1 => 'Approved'
+    STATUS_PENDING => 'Pending',
+    STATUS_APPROVED => 'Approved'
 ));

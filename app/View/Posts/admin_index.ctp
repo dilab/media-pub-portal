@@ -10,17 +10,17 @@
 
 <ul class="nav nav-tabs nav-justified">
 	<li class=<?php echo -1==$status?'active':'';?>>
-		<?php echo $this->Html->link(__('All <span class="badge">20</span>'),
+		<?php echo $this->Html->link(__('All <span class="badge">'.$stats['total'].'</span>'),
 									array('action'=>'index',$categoryId,-1),
 									array('escape'=>false));?>
 	</li>
 	<li class=<?php echo 1==$status?'active':'';?>>
-		<?php echo $this->Html->link(__('Appproved <span class="badge">20</span>'),
+		<?php echo $this->Html->link(__('Appproved <span class="badge">'.$stats['approved'].'</span>'),
 									array('action'=>'index',$categoryId,1),
 									array('escape'=>false));?>
 	</li>
 	<li class=<?php echo 0==$status?'active':'';?>>
-		<?php echo $this->Html->link(__('Pending <span class="badge">20</span>'),
+		<?php echo $this->Html->link(__('Pending <span class="badge">'.$stats['pending'].'</span>'),
 										array('action'=>'index',$categoryId,0),
 										array('escape'=>false));?>
 	</li>
