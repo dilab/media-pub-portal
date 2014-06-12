@@ -1,52 +1,31 @@
-<div class="container">
-    <div class="row">
-        <div class="goodhead">
-            <h1>Change Password</h1>
-            <div class="aline"></div>
-        </div>
-        
-        <div class="goodbox">
-            <?php 
-            echo $this->Session->flash(); 
+<ol class="breadcrumb">
+    <li class="active"><?php echo __('Change Password');?></li>
+</ol>
 
-            echo $this->Form->create('User',array(
-                            'novalidate'=>true,
-                            'autocomplete'=>'off',
-                            'inputDefaults' => array(
-                                'class'=>'text input',
-                                'required'=>false
-                            )));
-            ?>
 
-            <div class="field">
-            	<label class="control-label">New Password</label>
-        	    <div class="control">
-        	    	<?php echo $this->Form->input('password',array(
-        	    								'label'=>false,'type'=>'password',
-        	    								'div'=>false, 'after'=>'<div class="spantext">'.__('Min 6 characters.').'</div>')); ?>
-        	    </div>
-            </div>
-            
-            <div class="field">
-            	<label class="control-label">Retype New Password</label>
-        	    <div class="control">
-        	    	<?php echo $this->Form->input('password2',array(
-        	    								'label'=>false,'type'=>'password',
-        	    								'div'=>false)); ?>
-                </div>
-            </div>
-            
-            <div class="field">
-                <div class="control">
-                    <?php 
-                        echo $this->Form->end(array(
-                            'label' => __('Save'),
-                            'class'=> 'btn btn-danger'
-                            )
-                        );
-                    ?>
-                </div>
-            </div>  
-        </div>
-    </div>
+
+<div class="well">
+    <?php
+        echo $this->Form->create('User',array(
+            'url'=>array('controller'=>'users','action'=>'change_pwd','plugin'=>'cakeuser','admin'=>false),
+            'type'=>'file',
+            'class'=>'form-horizontal',
+            'inputDefaults' => array(
+                'required'=>false,
+                'class'=>'form-control',
+                'div' => 'form-group',
+                'between'=>'<div class="col-sm-5">',
+                'after'=>'</div>',
+                'label'=>array('class'=>'col-sm-2 control-label')
+            )
+        ));
+
+        echo $this->Form->input('password',array('label'=>array('text'=>__('New Password'),'class'=>'col-sm-2 control-label')));
+
+        echo $this->Form->input('password2',array('type'=>'password','label'=>array('text'=>__('Confirm Password'),'class'=>'col-sm-2 control-label')));
+
+        echo $this->Form->input(__('Update'),array('label'=>false, 'class'=>'btn btn-default','type'=>'submit'));
+
+        echo $this->Form->end();
+    ?>
 </div>

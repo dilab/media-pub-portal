@@ -21,17 +21,17 @@ class UsersController extends CakeuserAppController {
      * change password method
      */
     public function change_pwd() {
-    	
+    	$this->layout = 'default-admin';
         if (($this->request->is('post'))) {
             
         	$this->request->data['User']['id'] = $this->Auth->User('id');
         	if ($this->User->changePwd($this->request->data)) {
         		$this->request->data = null;
                 $this->Session->setFlash(__('Password has been updated'),
-                                        'success');
+                                        'msg/success');
         	} else {        		
                 $this->Session->setFlash(__('Unable to update password'),
-                                        'error');
+                                        'msg/failure');
         	}
         }
     }
@@ -134,8 +134,7 @@ class UsersController extends CakeuserAppController {
     public function logout() {
         $this->Session->destroy();
         $this->Cookie->destroy();
-        //$this->redirect($this->Auth->logout());
-        $this->redirect('http://www.runsociety.com');
+        $this->redirect($this->Auth->logout());
     }
 
 	/**

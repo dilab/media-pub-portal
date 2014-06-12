@@ -1,3 +1,12 @@
+<?php
+    if (!isset($menu)) {
+        $menu = '';
+    }
+
+    if (!isset($categoryId)) {
+        $categoryId = '';
+    }
+?>
 <div class="list-group">
 	
 	<?php echo $this->Html->link(__('Dashboard'),'/admin',array('class'=>'list-group-item '.($menu=='dashboard'?'active':'')));?>
