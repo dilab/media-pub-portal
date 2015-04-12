@@ -11,7 +11,7 @@
 	
 	<?php
     // Coming soon
-    // echo $this->Html->link(__('Dashboard'),'/admin',array('class'=>'list-group-item '.($menu=='dashboard'?'active':'')));
+        echo $this->Html->link(__('Dashboard'),'/admin',array('class'=>'list-group-item '.($menu=='dashboard'?'active':'')));
     ?>
 	
 	<?php 

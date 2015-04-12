@@ -210,7 +210,7 @@ class Post extends AppModel {
 /**
  * add/edit a post, validation is included
  */
-	public function addPost($post) {
+	public function addPost($post) {$this->log($post);
 		// validate inputs
 		if (TYPE_IMG == $post['Post']['type']) {
 			// download from internet if needed

@@ -122,7 +122,7 @@ class PostsController extends AppController {
 
         $this->Post->Category->recursive = -1;
         $category = $this->Post->Category->read(null, $categoryId);
-        $this->set('category',$category);
+        $this->set(compact('category','categoryId'));
 
 		$this->set('posts', $this->Paginator->paginate());
 		$this->set('status',$status);
