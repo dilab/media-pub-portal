@@ -1,27 +1,28 @@
 [
     {
         "name": "composer/installers",
-        "version": "v1.0.10",
-        "version_normalized": "1.0.10.0",
+        "version": "v1.0.21",
+        "version_normalized": "1.0.21.0",
         "source": {
             "type": "git",
             "url": "https://github.com/composer/installers.git",
-            "reference": "35a07647186a910b725fca9290b13ca2e265491a"
+            "reference": "d64e23fce42a4063d63262b19b8e7c0f3b5e4c45"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/composer/installers/zipball/35a07647186a910b725fca9290b13ca2e265491a",
-            "reference": "35a07647186a910b725fca9290b13ca2e265491a",
+            "url": "https://api.github.com/repos/composer/installers/zipball/d64e23fce42a4063d63262b19b8e7c0f3b5e4c45",
+            "reference": "d64e23fce42a4063d63262b19b8e7c0f3b5e4c45",
             "shasum": ""
         },
         "replace": {
+            "roundcube/plugin-installer": "*",
             "shama/baton": "*"
         },
         "require-dev": {
             "composer/composer": "1.0.*@dev",
-            "phpunit/phpunit": "3.7.*"
+            "phpunit/phpunit": "4.1.*"
         },
-        "time": "2014-01-31 16:53:31",
+        "time": "2015-02-18 17:17:01",
         "type": "composer-installer",
         "extra": {
             "class": "Composer\\Installers\\Installer",
@@ -43,26 +44,34 @@
             {
                 "name": "Kyle Robinson Young",
                 "email": "kyle@dontkry.com",
-                "homepage": "https://github.com/shama",
-                "role": "Developer"
+                "homepage": "https://github.com/shama"
             }
         ],
         "description": "A multi-framework Composer library installer",
         "homepage": "http://composer.github.com/installers/",
         "keywords": [
             "Craft",
+            "Dolibarr",
             "Hurad",
             "MODX Evo",
             "OXID",
+            "SMF",
+            "Thelia",
+            "WolfCMS",
             "agl",
+            "aimeos",
             "annotatecms",
+            "bitrix",
             "cakephp",
+            "chef",
             "codeigniter",
             "concrete5",
             "croogo",
+            "dokuwiki",
             "drupal",
             "elgg",
             "fuelphp",
+            "grav",
             "installer",
             "joomla",
             "kohana",
@@ -72,9 +81,12 @@
             "mako",
             "mediawiki",
             "modulework",
+            "moodle",
             "phpbb",
             "piwik",
             "ppi",
+            "puppet",
+            "roundcube",
             "shopware",
             "silverstripe",
             "symfony",
@@ -86,17 +98,17 @@
     },
     {
         "name": "mjohnson/transit",
-        "version": "1.4.6",
-        "version_normalized": "1.4.6.0",
+        "version": "1.6.2",
+        "version_normalized": "1.6.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/milesj/transit.git",
-            "reference": "b98ecdf7b94239828544e18e5ed83ff5da4038e2"
+            "reference": "0fb92e36b17462b36646d839f05924510f5b1988"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/milesj/transit/zipball/b98ecdf7b94239828544e18e5ed83ff5da4038e2",
-            "reference": "b98ecdf7b94239828544e18e5ed83ff5da4038e2",
+            "url": "https://api.github.com/repos/milesj/transit/zipball/0fb92e36b17462b36646d839f05924510f5b1988",
+            "reference": "0fb92e36b17462b36646d839f05924510f5b1988",
             "shasum": ""
         },
         "require": {
@@ -106,15 +118,17 @@
             "php": ">=5.3.3"
         },
         "require-dev": {
-            "aws/aws-sdk-php": "~2.2",
-            "ext-exif": "*"
+            "aws/aws-sdk-php": "~2.7.0",
+            "ext-exif": "*",
+            "rackspace/php-opencloud": "*"
         },
         "suggest": {
-            "aws/aws-sdk-php": "~2.2",
+            "aws/aws-sdk-php": "Upload files to Amazon S3 and Glacier",
             "ext-exif": "Extract exif data from images",
-            "ext-gd": "Enable the GD library for image transforming"
+            "ext-gd": "Enable the GD library for image transforming",
+            "rackspace/php-opencloud": "Upload files to RackSpace OpenCloud"
         },
-        "time": "2013-12-05 04:34:42",
+        "time": "2015-01-18 20:05:15",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -138,11 +152,15 @@
             "application",
             "archive",
             "audio",
+            "cloud",
+            "cloudfiles",
             "exif",
             "file",
             "glacier",
             "image",
             "importer",
+            "opencloud",
+            "rackspace",
             "s3",
             "text",
             "transformer",
@@ -155,17 +173,17 @@
     },
     {
         "name": "mjohnson/uploader",
-        "version": "4.5.2",
-        "version_normalized": "4.5.2.0",
+        "version": "4.6.1",
+        "version_normalized": "4.6.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/milesj/uploader.git",
-            "reference": "360ad48386d8ae7a115cc622c267608992051623"
+            "reference": "9e22c68f1e3eb1b77d476bb8c8240ff399f33da2"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/milesj/uploader/zipball/360ad48386d8ae7a115cc622c267608992051623",
-            "reference": "360ad48386d8ae7a115cc622c267608992051623",
+            "url": "https://api.github.com/repos/milesj/uploader/zipball/9e22c68f1e3eb1b77d476bb8c8240ff399f33da2",
+            "reference": "9e22c68f1e3eb1b77d476bb8c8240ff399f33da2",
             "shasum": ""
         },
         "require": {
@@ -173,15 +191,15 @@
             "ext-curl": "*",
             "ext-fileinfo": "*",
             "ext-mbstring": "*",
-            "mjohnson/transit": "~1.4",
+            "mjohnson/transit": "~1.6",
             "php": ">=5.3.3"
         },
         "suggest": {
-            "aws/aws-sdk-php": "~2.2",
+            "aws/aws-sdk-php": "~2.7",
             "ext-exif": "Extract exif data from images",
             "ext-gd": "Enable the GD library for image transforming"
         },
-        "time": "2014-01-18 03:53:18",
+        "time": "2015-01-18 19:49:52",
         "type": "cakephp-plugin",
         "installation-source": "dist",
         "notification-url": "https://packagist.org/downloads/",
@@ -203,6 +221,7 @@
             "plugin",
             "uploader",
             "validation"
-        ]
+        ],
+        "abandoned": true
     }
 ]

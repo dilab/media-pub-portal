@@ -102,7 +102,9 @@ class FileTest extends TestCase {
             'fnumber' => '45/10',
             'date' => '2013:06:07 11:32:22',
             'iso' => 100,
-            'focal' => '100/10'
+            'focal' => '100/10',
+            'latitude' => '',
+            'longitude' => ''
         ), $file->exif());
 
         $file = new File(TEMP_DIR . '/magic-mime-verify.js');
@@ -115,7 +117,9 @@ class FileTest extends TestCase {
             'fnumber' => '',
             'date' => '',
             'iso' => '',
-            'focal' => ''
+            'focal' => '',
+            'latitude' => '',
+            'longitude' => ''
         ), $file->exif());
     }
 
@@ -266,6 +270,14 @@ class FileTest extends TestCase {
         $this->assertEquals('vertical-test', $this->object->name());
     }
 
+    public function testRenameOverwrite() {
+        $this->assertTrue($this->object->rename('vertical'));
+        $this->assertEquals(TEMP_DIR . '/vertical-1.jpg', $this->object->path());
+
+        // Clean up
+        $this->object->delete();
+    }
+
     /**
      * Test that size() returns the file size.
      */
@@ -319,7 +331,9 @@ class FileTest extends TestCase {
             'exif.fnumber' => '',
             'exif.date' => '',
             'exif.iso' => '',
-            'exif.focal' => ''
+            'exif.focal' => '',
+            'exif.latitude' => '',
+            'exif.longitude' => ''
         ), $this->object->toArray());
     }
 

@@ -5,16 +5,22 @@
     "description": "A multi-framework Composer library installer",
     "keywords": [
         "installer",
+        "Aimeos",
         "AGL",
         "AnnotateCms",
+        "Bitrix",
         "CakePHP",
+        "Chef",
         "CodeIgniter",
         "concrete5",
         "Craft",
         "Croogo",
+        "DokuWiki",
+        "Dolibarr",
         "Drupal",
         "Elgg",
         "FuelPHP",
+        "Grav",
         "Hurad",
         "Joomla",
         "Kohana",
@@ -26,13 +32,19 @@
         "MediaWiki",
         "OXID",
         "MODULEWork",
+        "Moodle",
         "Piwik",
         "phpBB",
         "PPI",
+        "Puppet",
+        "Roundcube",
         "shopware",
         "SilverStripe",
+        "SMF",
         "symfony",
+        "Thelia",
         "TYPO3",
+        "WolfCMS",
         "WordPress",
         "Zend",
         "Zikula"
@@ -55,10 +67,11 @@
         }
     },
     "replace": {
-        "shama/baton": "*"
+        "shama/baton": "*",
+        "roundcube/plugin-installer": "*"
     },
     "require-dev": {
         "composer/composer": "1.0.*@dev",
-        "phpunit/phpunit": "3.7.*"
+        "phpunit/phpunit": "4.1.*"
     }
 }

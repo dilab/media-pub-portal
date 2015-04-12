@@ -9,15 +9,16 @@ namespace Transit\Transporter\Aws;
 
 use Transit\File;
 use Transit\Exception\TransportationException;
+use Aws\Common\RulesEndpointProvider;
 use Aws\Common\Enum\Region;
 use Aws\Common\Enum\Size;
-use Aws\Common\Exception\MultipartUploadException;
 use Aws\S3\S3Client;
 use Aws\S3\Enum\CannedAcl;
 use Aws\S3\Enum\Storage;
 use Aws\S3\Exception\S3Exception;
 use Aws\S3\Model\MultipartUpload\UploadBuilder;
 use Guzzle\Http\EntityBody;
+use \Exception;
 use \InvalidArgumentException;
 
 /**
@@ -41,7 +42,7 @@ class S3Transporter extends AbstractAwsTransporter {
      *         @type string $storage    S3 storage method
      *         @type string $acl        S3 ACL rules to use
      *         @type string $encryption Encryption algorithm to use for uploading
-     *         @type array $meta        Meta data to apply to S3 files
+     *         @type array $params      Custom params and meta data to apply to S3 files
      *         @type bool $returnUrl    Return the full S3 URL or the S3 key after upload
      * }
      */
@@ -55,7 +56,7 @@ class S3Transporter extends AbstractAwsTransporter {
         'storage' => Storage::STANDARD,
         'acl' => CannedAcl::PUBLIC_READ,
         'encryption' => '',
-        'meta' => array(),
+        'params' => array(),
         'returnUrl' => true
     );
 
@@ -133,21 +134,31 @@ class S3Transporter extends AbstractAwsTransporter {
 
             try {
                 $response = $uploader->upload();
-            } catch (MultipartUploadException $e) {
+            } catch (Exception $e) {
                 $uploader->abort();
             }
 
         } else {
-            $response = $this->getClient()->putObject(array_filter(array(
+            $params = array_filter(array(
                 'Key' => $key,
                 'Bucket' => $config['bucket'],
                 'Body' => EntityBody::factory(fopen($file->path(), 'r')),
                 'ACL' => $config['acl'],
                 'ContentType' => $file->type(),
                 'ServerSideEncryption' => $config['encryption'],
-                'StorageClass' => $config['storage'],
-                'Metadata' => $config['meta']
-            )));
+                'StorageClass' => $config['storage']
+            ));
+
+            // Backwards compatibility since meta was removed
+            if (!empty($config['meta'])) {
+                $config['params']['Metadata'] = $config['meta'];
+            }
+
+            if (!empty($config['params'])) {
+                $params += $config['params'];
+            }
+
+            $response = $this->getClient()->putObject($params);
         }
 
         // Return S3 URL if successful
@@ -155,10 +166,10 @@ class S3Transporter extends AbstractAwsTransporter {
             $file->delete();
 
             if ($config['returnUrl']) {
-                return sprintf('%s/%s/%s',
-                    S3Client::getEndpoint($this->getClient()->getDescription(), $config['region'], $config['scheme']),
-                    $config['bucket'],
-                    $key);
+                $provider = RulesEndpointProvider::fromDefaults();
+                $endpoint = $provider(array('service' => 's3', 'region' => $config['region'], 'scheme' => $config['scheme']));
+
+                return sprintf('%s/%s/%s', $endpoint['endpoint'], $config['bucket'], $key);
             }
 
             return $key;

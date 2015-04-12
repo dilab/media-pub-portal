@@ -9,7 +9,6 @@ namespace Transit;
 
 use Transit\Exception\IoException;
 use \InvalidArgumentException;
-use \RuntimeException;
 use \Closure;
 
 /**
@@ -182,7 +181,9 @@ class File {
                 'fnumber' => 'FNumber',
                 'date' => 'DateTime',
                 'iso' => 'ISOSpeedRatings',
-                'focal' => 'FocalLength'
+                'focal' => 'FocalLength',
+                'latitude' => 'GPSLatitude',
+                'longitude' => 'GPSLongitude'
             );
 
             if ($file->supportsExif()) {
@@ -191,7 +192,16 @@ class File {
                         $value = '';
 
                         if (!empty($data[$find])) {
-                            $value = $data[$find];
+                            // Convert DMS (degrees, minutes, seconds) to decimals
+                            if ($key === 'latitude' || $key === 'longitude'){
+                                $deg = $data[$find][0];
+                                $min = $data[$find][1];
+                                $sec = $data[$find][2];
+                                $value = $deg + ((($min * 60) + $sec) / 3600);
+
+                            } else {
+                                $value = $data[$find];
+                            }
                         }
 
                         $exif[$key] = $value;
@@ -398,9 +408,10 @@ class File {
      * @param string $name
      * @param string $append
      * @param string $prepend
+     * @param bool $overwrite
      * @return bool
      */
-    public function rename($name = '', $append = '', $prepend = '') {
+    public function rename($name = '', $append = '', $prepend = '', $overwrite = false) {
         if (is_callable($name)) {
             $name = call_user_func_array($name, array($this->name(), $this));
         } else {
@@ -411,11 +422,23 @@ class File {
         $name = (string) $prepend . $name . (string) $append;
 
         // Remove unwanted characters
-        $name = preg_replace('/[^_-\p{Ll}\p{Lm}\p{Lo}\p{Lt}\p{Lu}\p{Nd}]/imu', '-', $name);
+        $name = preg_replace('/[^_\-\p{Ll}\p{Lm}\p{Lo}\p{Lt}\p{Lu}\p{Nd}]/imu', '-', $name);
 
         // Rename file
         $ext = $this->ext() ?: MimeType::getExtFromType($this->type(), true);
-        $targetPath = $this->dir() . $name . '.' . $ext;
+        $newName = $name;
+
+        // Don't overwrite
+        if (!$overwrite) {
+            $no = 1;
+
+            while (file_exists($this->dir() . $newName . '.' . $ext)) {
+                $newName = $name . '-' . $no;
+                $no++;
+            }
+        }
+
+        $targetPath = $this->dir() . $newName . '.' . $ext;
 
         if (rename($this->path(), $targetPath)) {
             $this->reset($targetPath);
