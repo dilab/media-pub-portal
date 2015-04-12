@@ -3,7 +3,7 @@ App::uses('AppController', 'Controller');
 
 /**
  *
- * @property Post
+ * @property Post $Post
  */
 class PostsController extends AppController {
 
@@ -119,9 +119,12 @@ class PostsController extends AppController {
 		}
 		
 		$this->Paginator->settings['conditions'] = $conditions;
-		
+
+        $this->Post->Category->recursive = -1;
+        $category = $this->Post->Category->read(null, $categoryId);
+        $this->set('category',$category);
+
 		$this->set('posts', $this->Paginator->paginate());
-		$this->set('categoryId',$categoryId);
 		$this->set('status',$status);
         $this->set('stats',$stats);
 	}

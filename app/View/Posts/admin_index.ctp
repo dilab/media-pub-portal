@@ -1,12 +1,12 @@
 <ol class="breadcrumb">
-	<li class="active">Picture</li>
+	<li class="active"><?php echo $category['Category']['name'];?></li>
 </ol>
 
 <p>
 <?php
-if (-1!=$categoryId) {
+if (-1!=$category['Category']['id']) {
     echo $this->Html->link(__('Add'),
-                                        array('action'=>'add',$categoryId),
+                                        array('action'=>'add',$category['Category']['id']),
                                         array('class'=>'btn btn-primary'));
 }
 ?>
@@ -15,17 +15,17 @@ if (-1!=$categoryId) {
 <ul class="nav nav-tabs nav-justified">
 	<li class=<?php echo -1==$status?'active':'';?>>
 		<?php echo $this->Html->link(__('All <span class="badge">'.$stats['total'].'</span>'),
-									array('action'=>'index',$categoryId,-1),
+									array('action'=>'index',$category['Category']['id'],-1),
 									array('escape'=>false));?>
 	</li>
 	<li class=<?php echo 1==$status?'active':'';?>>
 		<?php echo $this->Html->link(__('Appproved <span class="badge">'.$stats['approved'].'</span>'),
-									array('action'=>'index',$categoryId,1),
+									array('action'=>'index',$category['Category']['id'],1),
 									array('escape'=>false));?>
 	</li>
 	<li class=<?php echo 0==$status?'active':'';?>>
 		<?php echo $this->Html->link(__('Pending <span class="badge">'.$stats['pending'].'</span>'),
-										array('action'=>'index',$categoryId,0),
+										array('action'=>'index',$category['Category']['id'],0),
 										array('escape'=>false));?>
 	</li>
 </ul>
