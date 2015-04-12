@@ -23,9 +23,10 @@
 												array('class'=>'list-group-item '.$active));
 	}
 	?>
-	
-	<?php echo $this->Html->link(__('Pages'),'/admin',array('class'=>'list-group-item '.($menu=='pages'?'active':'')));?>
-	<?php echo $this->Html->link(__('Settings'),'/admin',array('class'=>'list-group-item '.($menu=='settings'?'active':'')));?>
+
+    <!-- Coming soon -->
+	<?php //echo $this->Html->link(__('Pages'),'/admin',array('class'=>'list-group-item '.($menu=='pages'?'active':'')));?>
+	<?php //echo $this->Html->link(__('Settings'),'/admin',array('class'=>'list-group-item '.($menu=='settings'?'active':'')));?>
 	
 	
 </div>
