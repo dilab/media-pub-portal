@@ -9,7 +9,10 @@
 ?>
 <div class="list-group">
 	
-	<?php echo $this->Html->link(__('Dashboard'),'/admin',array('class'=>'list-group-item '.($menu=='dashboard'?'active':'')));?>
+	<?php
+    // Coming soon
+    // echo $this->Html->link(__('Dashboard'),'/admin',array('class'=>'list-group-item '.($menu=='dashboard'?'active':'')));
+    ?>
 	
 	<?php 
 	$categories = $this->requestAction(array('controller'=>'posts','action'=>'categoryList','admin'=>false,'plugin'=>null));
