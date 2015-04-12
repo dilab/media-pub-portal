@@ -29,7 +29,7 @@ class AppController extends Controller {
 		$this->setAdminMenu();
 		$this->setOptions();
 
-		
+
 	}
 	
 	public function setPageTitle() {

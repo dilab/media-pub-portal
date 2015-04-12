@@ -41,7 +41,7 @@
 
 	      <hr>
 	      <footer>
-	      <p>Developed by <a href="http://www.the-di-lab.com">The-Di-Lab</a></p>
+	      <p>Developed by <a target="_blank" href="http://www.the-di-lab.com">The-Di-Lab</a></p>
 	      </footer>
 </div> <!-- /container -->
 
