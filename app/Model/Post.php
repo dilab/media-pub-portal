@@ -222,10 +222,11 @@ class Post extends AppModel {
 			$videoUrl = ($post['Post']['video_url']);
 			if (false!==strpos(($videoUrl), 'youtube')) {
 				parse_str(parse_url( $videoUrl, PHP_URL_QUERY ), $myArrayOfVars );
-				$youtubeId = $myArrayOfVars['v'];  
-				$this->log($youtubeId);
-				$post['Post']['picture_upload_object'] = 'http://i1.ytimg.com/vi/'.$youtubeId.'/hqdefault.jpg';
-				$post['Post']['video_url']= '//www.youtube.com/embed/'.$youtubeId;
+                if (isset($myArrayOfVars['v'])) {
+                    $youtubeId = $myArrayOfVars['v'];
+                    $post['Post']['picture_upload_object'] = 'http://i1.ytimg.com/vi/'.$youtubeId.'/hqdefault.jpg';
+                    $post['Post']['video_url']= '//www.youtube.com/embed/'.$youtubeId;
+                }
 			}
 		}
 		
