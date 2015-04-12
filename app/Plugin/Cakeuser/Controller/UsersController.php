@@ -90,7 +90,7 @@ class UsersController extends CakeuserAppController {
         	return $this->redirect(array('action'=>'login'));
         } else {
         	$this->Session->setFlash(__('Invalid verification code'),
-                                        'error');
+                                        'msg/failure');
         	return $this->redirect(array('action'=>'register'));
         }
 	}
@@ -118,7 +118,7 @@ class UsersController extends CakeuserAppController {
             	
             	$this->redirect(array('action'=>'profile','admin'=>false));
             } else {
-                $this->Session->setFlash(__('Username or password is incorrect'),'error');
+                $this->Session->setFlash(__('Username or password is incorrect'),'msg/failure');
             }
         }
         
@@ -151,7 +151,7 @@ class UsersController extends CakeuserAppController {
 	        	$this->Session->setFlash(__('An email has been sent to your email, please follow instruction to reset your password'),'success');
 	        	$this->request->data=null;
 	        } else {
-	            $this->Session->setFlash(__('Please correct the error below'),'error');
+	            $this->Session->setFlash(__('Please correct the error below'),'msg/failure');
 	        }
 	    }
 	}
@@ -181,7 +181,7 @@ class UsersController extends CakeuserAppController {
 		
 		//if valid code
 		if (null==$this->User->checkResetPassword($code)) {
-			$this->Session->setFlash(__('Invalid verification code, please register an account'),'error');
+			$this->Session->setFlash(__('Invalid verification code, please register an account'),'msg/failure');
 			return $this->redirect(array('action'=>'register'));
 		}
 		
@@ -191,7 +191,7 @@ class UsersController extends CakeuserAppController {
 				$this->Session->setFlash(__('Password has been reset'),'success');
 				return $this->redirect(array('action'=>'login'));
 			} else {
-				$this->Session->setFlash(__('Invalid verification code, please register an account'),'error');
+				$this->Session->setFlash(__('Invalid verification code, please register an account'),'msg/failure');
 				return $this->redirect(array('action'=>'register'));
 				
 			}
