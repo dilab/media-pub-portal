@@ -28,9 +28,14 @@
 		echo $this->Form->input('source',array('label'=>array('text'=>__('Source (optional)'),'class'=>'col-sm-2 control-label')));
 		
 		if ($category['Category']['type'] == TYPE_IMG ) {
-			echo $this->Form->input('picture_url',array('label'=>array('text'=>__('Picture URL'),'class'=>'col-sm-2 control-label'),'class'=>'group-picture form-control'));
+			echo $this->Form->input('picture_url', array('label'=>array('text'=>__('Picture URL'),'class'=>'col-sm-2 control-label'),
+                                                         'after' => '<p class="help-block">Make sure this field is empty if you want to upload a file</p></div>',
+                                                         'class'=>'group-picture form-control')
+            );
 		
-			echo $this->Form->input('picture_upload_object',array('type'=>'file', 'class'=>'group-picture form-control','label'=>array('text'=>__('Upload file'),'class'=>'col-sm-2 control-label')));
+			echo $this->Form->input('picture_upload_object',
+                                    array(  'type'=>'file', 'class'=>'group-picture form-control',
+                                            'label'=>array('text'=>__('Upload file'),'class'=>'col-sm-2 control-label')));
 		
 		} else {
 			echo $this->Form->input('video_url',array('label'=>array('text'=>__('Video URL'),'class'=>'col-sm-2 control-label'),'class'=>'group-video form-control'));
