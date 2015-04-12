@@ -49,9 +49,12 @@
 			<ul class="nav navbar-nav navbar-right">
 			  <li class="">
 			  <?php  
-						echo $this->Html->link(__('Submit').' <span class="glyphicon glyphicon-upload"></span> ',
+						/*
+						 echo $this->Html->link(__('Submit').' <span class="glyphicon glyphicon-upload"></span> ',
 									array('controller'=>'posts','action'=>'submit','admin'=>false,'plugin'=>null),
-									array('escape'=>false)); ?>
+								array('escape'=>false));
+						*/
+              ?>
 			  </li>
 			</ul>
 		</div>
