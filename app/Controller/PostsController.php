@@ -185,7 +185,7 @@ class PostsController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Post->addPost($this->request->data)) {
 				$this->Session->setFlash(__('The post has been saved.'),'msg/success');
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'index',$this->request->data['Post']['category_id']));
 			} else {
 				$this->log($this->Post->validationErrors);
 				$this->Session->setFlash(__('The post could not be saved. Please, try again.'),'msg/failure');
