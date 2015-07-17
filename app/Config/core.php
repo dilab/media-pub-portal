@@ -2,7 +2,7 @@
 	require_once dirname(__DIR__) . '/Vendor/autoload.php';
 
 	// set it to 1 for demo mode
-	Configure::write('demo',1);
+	Configure::write('demo',0);
 
     Configure::write('debug', 0);
     

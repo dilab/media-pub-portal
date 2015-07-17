@@ -108,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
-INSERT INTO `users` VALUES(1, 'admin', 'b7021e3538dd05d2c8f9a55c42ecac11ef585213', 'admin@gmail.com', 'admin', 1);
+INSERT INTO `users` VALUES(1, 'admin', '1c0b0c33b402953198c845f6f774e029a1e8f492', 'admin@gmail.com', 'admin', 1);
 
 INSERT INTO `categories` VALUES(1, 'Picture', 'glyphicon glyphicon-camera', 0, 'image', '2014-02-06 00:00:00', '2014-02-06 00:00:00');
 INSERT INTO `categories` VALUES(2, 'Animated GIF', 'glyphicon glyphicon-picture', 2, 'image', '2014-02-06 16:59:44', '2014-02-06 16:59:46');
